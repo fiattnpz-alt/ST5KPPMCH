@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ทำแบบประเมิน - แบบประเมินความเครียดและสุขภาพจิต</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <div style="font-weight: 600;">กำลังบันทึกข้อมูลและคำนวณผลลัพธ์...</div>
+  </div>
+
+  <div class="container" style="max-width: 750px;"> <!-- Increased width to fit tables comfortably -->
+    <h1>แบบประเมินสุขภาพจิต</h1>
+    <p class="subtitle">กรุณาเลือกคำตอบตามความเป็นจริงของท่าน</p>
+
+    <!-- Progress Indicator -->
+    <div class="progress-container" style="max-width: 600px; margin: 0 auto 30px auto;">
+      <div class="progress-line"></div>
+      <div class="progress-line-fill" style="width: 50%;"></div>
+      <div class="progress-step completed">1</div>
+      <div class="progress-step active">2</div>
+      <div class="progress-step">3</div>
+    </div>
+
+    <!-- Questionnaire Form -->
+    <form id="evaluationForm">
+
+      <!-- Section 1: ST-5 -->
+      <div class="section-title">แบบประเมินความเครียด (ST-5)</div>
+      <div class="section-desc">โปรดทำข้อคำถามเพื่อวัดระดับความเครียดเนื่องจากความกดดันในชีวิตประจำวันในช่วง 2-4
+        สัปดาห์ที่ผ่านมา</div>
+
+      <div class="grid-table-container">
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th>ข้อคำถาม</th>
+              <th>แทบไม่มี</th>
+              <th>บางครั้ง</th>
+              <th>บ่อยครั้ง</th>
+              <th>เป็นประจำ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. มีปัญหาการนอน (นอนไม่หลับหรือนอนมากเกินไป)</td>
+              <td><input type="radio" name="st5_q1" value="0" required></td>
+              <td><input type="radio" name="st5_q1" value="1"></td>
+              <td><input type="radio" name="st5_q1" value="2"></td>
+              <td><input type="radio" name="st5_q1" value="3"></td>
+            </tr>
+            <tr>
+              <td>2. มีสมาธิน้อยลงหงุดหงิด</td>
+              <td><input type="radio" name="st5_q2" value="0" required></td>
+              <td><input type="radio" name="st5_q2" value="1"></td>
+              <td><input type="radio" name="st5_q2" value="2"></td>
+              <td><input type="radio" name="st5_q2" value="3"></td>
+            </tr>
+            <tr>
+              <td>3. รู้สึกกระวนกระวาย / ว้าวุ่นใจ</td>
+              <td><input type="radio" name="st5_q3" value="0" required></td>
+              <td><input type="radio" name="st5_q3" value="1"></td>
+              <td><input type="radio" name="st5_q3" value="2"></td>
+              <td><input type="radio" name="st5_q3" value="3"></td>
+            </tr>
+            <tr>
+              <td>4. รู้สึกเบื่อ เซ็ง</td>
+              <td><input type="radio" name="st5_q4" value="0" required></td>
+              <td><input type="radio" name="st5_q4" value="1"></td>
+              <td><input type="radio" name="st5_q4" value="2"></td>
+              <td><input type="radio" name="st5_q4" value="3"></td>
+            </tr>
+            <tr>
+              <td>5. ไม่อยากพบปะผู้คน</td>
+              <td><input type="radio" name="st5_q5" value="0" required></td>
+              <td><input type="radio" name="st5_q5" value="1"></td>
+              <td><input type="radio" name="st5_q5" value="2"></td>
+              <td><input type="radio" name="st5_q5" value="3"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 2: 2Q (Depression screening) -->
+      <div class="section-title">ใบซึมเศร้า (แบบประเมิน 2Q)</div>
+      <div class="section-desc">โปรดทำแบบสำรวจในช่วง 2 สัปดาห์ที่ผ่านมา จนถึงวันนี้
+        เพื่อดูว่ามีความเสี่ยงต่อภาวะซึมเศร้าหรือไม่</div>
+
+      <div class="grid-table-container">
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th>ข้อคำถาม</th>
+              <th>มี</th>
+              <th>ไม่มี</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1.รู้สึกไม่สบายใจ, เซ็ง, ทุกข์ใจ, เศร้า, ท้อแท้, หรือซึมเศร้า</td>
+              <td><input type="radio" name="dep_q1" value="yes" required></td>
+              <td><input type="radio" name="dep_q1" value="no"></td>
+            </tr>
+            <tr>
+              <td>2. รู้สึกเบื่อ, ไม่อยากพูด/ทำอะไร, หรือทำอะไรก็ไม่สนุกเหมือนเดิม</td>
+              <td><input type="radio" name="dep_q2" value="yes" required></td>
+              <td><input type="radio" name="dep_q2" value="no"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Section 3: 1Q Suicide Risk -->
+      <div class="section-title">แบบประเมินความเสี่ยงต่อการทำร้ายตนเอง (1Q)</div>
+      <div class="section-desc">โปรดทำอาการในช่วง 1 เดือนที่ผ่านมา จนถึงวันนี้
+        เพื่อดูว่ามีปัญหาพฤติกรรมการฆ่าตัวตายหรือไม่</div>
+
+      <div class="grid-table-container">
+        <table class="grid-table">
+          <thead>
+            <tr>
+              <th>ข้อคำถาม</th>
+              <th>มี</th>
+              <th>ไม่มี</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3. คิดอยากตาย หรือคิดทำร้ายตนเอง</td>
+              <td><input type="radio" name="suicide_q1" value="yes" required></td>
+              <td><input type="radio" name="suicide_q1" value="no"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button type="submit" class="btn" style="margin-top: 15px;">ส่งแบบประเมินและดูผลลัพธ์</button>
+    </form>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/evaluate.js"></script>
+</body>
+
+</html>

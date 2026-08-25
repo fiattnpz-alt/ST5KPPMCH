@@ -3,70 +3,110 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ผลการประเมิน - แบบประเมินความเครียด</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>ผลการประเมินสุขภาพจิต</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>ผลการประเมินความเครียด</h1>
-    <p class="subtitle">สรุปผลระดับความเครียดและคำแนะนำที่เหมาะสมสำหรับคุณ</p>
-    
-    <!-- Progress Indicator -->
-    <div class="progress-container">
-      <div class="progress-line"></div>
-      <div class="progress-line-fill" style="width: 100%;"></div>
-      <div class="progress-step completed">1</div>
-      <div class="progress-step completed">2</div>
-      <div class="progress-step completed">3</div>
+
+  <!-- Header Banner -->
+  <div class="page-header">
+    <span class="header-icon">📊</span>
+    <h1>ผลการประเมินสุขภาพจิต</h1>
+    <p class="subtitle">สรุปผลและคำแนะนำเบื้องต้นสำหรับการดูแลสุขภาพจิตของท่าน</p>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Progress Stepper -->
+    <div class="stepper">
+      <div class="step done">
+        <div class="step-circle">✓</div>
+        <div class="step-label">ข้อมูลส่วนตัว</div>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step done">
+        <div class="step-circle">✓</div>
+        <div class="step-label">ทำแบบประเมิน</div>
+      </div>
+      <div class="step-line done"></div>
+      <div class="step active">
+        <div class="step-circle">3</div>
+        <div class="step-label">ผลลัพธ์</div>
+      </div>
     </div>
 
-    <!-- Result Dashboard -->
-    <div class="result-card">
-      <div class="score-display" id="scoreDisplay">0 <span class="score-total">/ 15 คะแนน</span></div>
-      
-      <div class="result-badge" id="resultBadge">กำลังคำนวณ...</div>
-      
-      <div id="resultAdvice" style="margin: 15px 0; font-size: 15px; text-align: left; background-color: #fafafa; padding: 15px; border-radius: 8px; border-left: 4px solid var(--primary-color);">
-        คำแนะนำจะแสดงผลตามระดับความเครียดของคุณ
+    <!-- Result Hero Card -->
+    <div class="result-hero">
+      <div class="score-ring" id="scoreRing">
+        <div class="score-number" id="scoreNumber">0</div>
+        <div class="score-denom">/ 15</div>
       </div>
-
-      <!-- User Info Summary -->
-      <div class="user-info-summary">
-        <h3 style="font-size: 16px; margin-bottom: 12px;">ข้อมูลผู้ลงทะเบียน</h3>
-        <div class="user-info-item">
-          <span class="user-info-label">ชื่อ-นามสกุล</span>
-          <span class="user-info-value" id="summaryName">-</span>
-        </div>
-        <div class="user-info-item">
-          <span class="user-info-label">เลขบัตรประชาชน</span>
-          <span class="user-info-value" id="summaryCitizenId">-</span>
-        </div>
-        <div class="user-info-item">
-          <span class="user-info-label">เบอร์โทรศัพท์</span>
-          <span class="user-info-value" id="summaryPhone">-</span>
-        </div>
-        <div class="user-info-item">
-          <span class="user-info-label">ที่อยู่</span>
-          <span class="user-info-value" id="summaryAddress">-</span>
-        </div>
+      <div>
+        <div style="font-size:12px; color:var(--text-muted); margin-bottom: 6px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px;">ระดับความเครียด (ST-5)</div>
+        <div class="result-badge-new" id="resultBadge">กำลังคำนวณ...</div>
       </div>
-
-      <!-- Mental Health Screening Summary -->
-      <div class="user-info-summary" style="margin-top: 15px; border-top: 1px dashed var(--border-color); padding-top: 15px;">
-        <h3 style="font-size: 16px; margin-bottom: 12px;">ผลการตรวจคัดกรองร่วม</h3>
-        <div class="user-info-item">
-          <span class="user-info-label">ภาวะซึมเศร้า (2Q)</span>
-          <span class="user-info-value" id="summaryDepression" style="font-weight: 700;">-</span>
-        </div>
-        <div class="user-info-item">
-          <span class="user-info-label">ความเสี่ยงทำร้ายตนเอง (1Q)</span>
-          <span class="user-info-value" id="summarySuicide" style="font-weight: 700;">-</span>
-        </div>
+      <div class="advice-box" id="resultAdvice">
+        กำลังโหลดคำแนะนำ...
       </div>
-
-      <button id="restartBtn" class="btn" style="margin-top: 25px;">ทำแบบประเมินใหม่</button>
     </div>
+
+    <!-- Mental Health Screening Cards -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon">🔬</span> ผลการตรวจคัดกรองร่วม
+      </div>
+
+      <!-- Depression 2Q -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding: 12px 0; border-bottom: 1px solid var(--border);">
+        <div>
+          <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:2px;">💙 ภาวะซึมเศร้า (2Q)</div>
+          <div style="font-size:12px; color:var(--text-muted);">การคัดกรองในช่วง 2 สัปดาห์ที่ผ่านมา</div>
+        </div>
+        <div id="summaryDepression" class="screen-result safe">–</div>
+      </div>
+
+      <!-- Suicide Risk 1Q -->
+      <div style="display:flex; align-items:center; justify-content:space-between; padding: 12px 0;">
+        <div>
+          <div style="font-size:14px; font-weight:600; color:var(--text); margin-bottom:2px;">⚠️ ความเสี่ยงทำร้ายตนเอง (1Q)</div>
+          <div style="font-size:12px; color:var(--text-muted);">การคัดกรองในช่วง 1 เดือนที่ผ่านมา</div>
+        </div>
+        <div id="summarySuicide" class="screen-result safe">–</div>
+      </div>
+    </div>
+
+    <!-- Patient Info Card -->
+    <div class="card">
+      <div class="card-title">
+        <span class="icon">👤</span> ข้อมูลผู้รับการประเมิน
+      </div>
+      <div class="info-grid">
+        <div class="info-item full-width">
+          <div class="info-item-label">ชื่อ – นามสกุล</div>
+          <div class="info-item-value" id="summaryName">–</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-label">เลขบัตรประชาชน</div>
+          <div class="info-item-value" id="summaryCitizenId">–</div>
+        </div>
+        <div class="info-item">
+          <div class="info-item-label">เบอร์โทรศัพท์</div>
+          <div class="info-item-value" id="summaryPhone">–</div>
+        </div>
+        <div class="info-item full-width">
+          <div class="info-item-label">ที่อยู่</div>
+          <div class="info-item-value" id="summaryAddress">–</div>
+        </div>
+      </div>
+    </div>
+
+    <button id="restartBtn" class="btn btn-outline" style="margin-top: 8px;">
+      🔄 ทำแบบประเมินใหม่
+    </button>
+
+    <div class="page-footer">หากมีข้อสงสัย กรุณาปรึกษาแพทย์หรือบุคลากรทางการแพทย์ · สายด่วนสุขภาพจิต 1323</div>
   </div>
 
   <script src="js/result.js"></script>

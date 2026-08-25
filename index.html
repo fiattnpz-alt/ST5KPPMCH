@@ -1,79 +1,116 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ลงทะเบียนผู้ประเมิน - แบบประเมินความเครียด</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>ลงทะเบียน - แบบประเมินสุขภาพจิต</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <div class="container">
-    <h1>แบบประเมินความเครียด</h1>
-    <p class="subtitle">กรุณากรอกข้อมูลส่วนตัวเพื่อเริ่มทำแบบประเมินความเครียด</p>
 
-    <!-- Progress Indicator -->
-    <div class="progress-container">
-      <div class="progress-line"></div>
-      <div class="progress-line-fill" style="width: 0%;"></div>
-      <div class="progress-step active">1</div>
-      <div class="progress-step">2</div>
-      <div class="progress-step">3</div>
+  <!-- Header Banner -->
+  <div class="page-header">
+    <span class="header-icon">🏥</span>
+    <h1>แบบประเมินสุขภาพจิต</h1>
+    <p class="subtitle">กรุณากรอกข้อมูลส่วนตัวเพื่อเริ่มต้นการประเมิน</p>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Progress Stepper -->
+    <div class="stepper">
+      <div class="step active">
+        <div class="step-circle">1</div>
+        <div class="step-label">ข้อมูลส่วนตัว</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <div class="step-label">ทำแบบประเมิน</div>
+      </div>
+      <div class="step-line"></div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <div class="step-label">ผลลัพธ์</div>
+      </div>
     </div>
 
     <!-- Registration Form -->
     <form id="registrationForm" novalidate>
+      <div class="card">
+        <div class="card-title">
+          <span class="icon">👤</span>
+          ข้อมูลส่วนบุคคล
+        </div>
 
-      <div class="form-group">
-        <label for="titlePrefix">คำนำหน้า *</label>
-        <select id="titlePrefix" name="titlePrefix" required>
-          <option value="" disabled selected>-- เลือกคำนำหน้า --</option>
-          <option value="ด.ช.">เด็กชาย (ด.ช.)</option>
-          <option value="ด.ญ.">เด็กหญิง (ด.ญ.)</option>
-          <option value="นาย">นาย</option>
-          <option value="นาง">นาง</option>
-          <option value="นางสาว">นางสาว</option>
-        </select>
-        <div class="error-message" id="titlePrefixError">กรุณาเลือกคำนำหน้า</div>
+        <!-- Title + First Name + Last Name -->
+        <div class="form-group">
+          <label for="titlePrefix">
+            <span class="lbl-icon">🏷️</span> คำนำหน้า <span class="required-star">*</span>
+          </label>
+          <select id="titlePrefix" name="titlePrefix" required>
+            <option value="" disabled selected>-- เลือกคำนำหน้า --</option>
+            <option value="ด.ช.">เด็กชาย (ด.ช.)</option>
+            <option value="ด.ญ.">เด็กหญิง (ด.ญ.)</option>
+            <option value="นาย">นาย</option>
+            <option value="นาง">นาง</option>
+            <option value="นางสาว">นางสาว</option>
+          </select>
+          <div class="error-message" id="titlePrefixError">กรุณาเลือกคำนำหน้า</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">
+              <span class="lbl-icon">✏️</span> ชื่อจริง <span class="required-star">*</span>
+            </label>
+            <input type="text" id="firstName" name="firstName" placeholder="ชื่อจริง" required>
+            <div class="error-message" id="firstNameError">กรุณากรอกชื่อจริง</div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">
+              <span class="lbl-icon">✏️</span> นามสกุล <span class="required-star">*</span>
+            </label>
+            <input type="text" id="lastName" name="lastName" placeholder="นามสกุล" required>
+            <div class="error-message" id="lastNameError">กรุณากรอกนามสกุล</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="citizenId">
+            <span class="lbl-icon">🪪</span> เลขบัตรประชาชน <span class="required-star">*</span>
+          </label>
+          <input type="text" id="citizenId" name="citizenId" placeholder="กรอกเลข 13 หลัก" maxlength="13" required>
+          <div class="error-message" id="citizenIdError">กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง</div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">
+            <span class="lbl-icon">📞</span> เบอร์โทรศัพท์ <span class="required-star">*</span>
+          </label>
+          <input type="tel" id="phone" name="phone" placeholder="เช่น 0812345678" required>
+          <div class="error-message" id="phoneError">กรุณากรอกเบอร์โทรศัพท์ให้ถูกต้อง</div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label for="address">
+            <span class="lbl-icon">🏠</span> ที่อยู่ <span class="required-star">*</span>
+          </label>
+          <textarea id="address" name="address" placeholder="กรอกที่อยู่ปัจจุบัน" required></textarea>
+          <div class="error-message" id="addressError">กรุณากรอกที่อยู่</div>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="firstName">ชื่อ *</label>
-        <input type="text" id="firstName" name="firstName" placeholder="กรอกชื่อจริง" required>
-        <div class="error-message" id="firstNameError">กรุณากรอกชื่อจริง</div>
-      </div>
-
-      <div class="form-group">
-        <label for="lastName">นามสกุล *</label>
-        <input type="text" id="lastName" name="lastName" placeholder="กรอกนามสกุล" required>
-        <div class="error-message" id="lastNameError">กรุณากรอกนามสกุล</div>
-      </div>
-
-      <div class="form-group">
-        <label for="citizenId">เลขบัตรประชาชน *</label>
-        <input type="text" id="citizenId" name="citizenId" placeholder="กรอกเลขบัตรประชาชน 13 หลัก" required>
-        <div class="error-message" id="citizenIdError">กรุณากรอกเลขบัตรประชาชน 13 หลักให้ถูกต้อง</div>
-      </div>
-
-      <div class="form-group">
-        <label for="phone">เบอร์โทรศัพท์ *</label>
-        <input type="tel" id="phone" name="phone" placeholder="ตัวอย่าง: 0812345678" required>
-        <div class="error-message" id="phoneError">กรุณากรอกเบอร์โทรศัพท์ 9-10 หลักให้ถูกต้อง</div>
-      </div>
-
-      <div class="form-group">
-        <label for="address">ที่อยู่ *</label>
-        <textarea id="address" name="address" placeholder="กรอกที่อยู่ปัจจุบัน" required></textarea>
-        <div class="error-message" id="addressError">กรุณากรอกที่อยู่</div>
-      </div>
-
-      <button type="submit" class="btn">ถัดไป (เข้าสู่แบบประเมิน)</button>
+      <button type="submit" class="btn">
+        ถัดไป &nbsp;→&nbsp; เข้าสู่แบบประเมิน
+      </button>
     </form>
+
+    <div class="page-footer">ข้อมูลของท่านจะถูกเก็บเป็นความลับตามมาตรฐานโรงพยาบาล</div>
   </div>
 
   <script src="js/register.js"></script>
 </body>
-
 </html>

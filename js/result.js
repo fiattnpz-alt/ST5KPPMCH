@@ -18,43 +18,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const score = parseInt(scoreStr, 10);
 
-  // Bind values
-  document.getElementById('scoreDisplay').innerHTML = `${score} <span class="score-total">/ 15 คะแนน</span>`;
-  
+  // Bind score values to the new score ring
+  document.getElementById('scoreNumber').innerText = score;
+
   const badge = document.getElementById('resultBadge');
   badge.innerText = resultText;
-  
-  // Set badge color and advice based on score
+
+  // Set badge class and advice based on score
   const adviceBox = document.getElementById('resultAdvice');
-  
+  const scoreRing = document.getElementById('scoreRing');
+
   if (score <= 4) {
-    badge.className = 'result-badge low';
-    adviceBox.style.borderLeftColor = 'var(--success-color)';
+    badge.className = 'result-badge-new badge-low';
+    scoreRing.style.borderColor = 'var(--success)';
+    adviceBox.style.borderLeftColor = 'var(--success)';
     adviceBox.innerHTML = `
-      <strong>คำแนะนำ: ความเครียดระดับน้อย (ปกติ)</strong><br>
-      สุขภาพจิตของคุณอยู่ในเกณฑ์ดีทั่วไป สามารถจัดการกับความเครียดในชีวิตประจำวันได้ดี แนะนำให้ทำกิจกรรมนันทนาการที่คุณชื่นชอบ ออกกำลังกายอย่างสม่ำเสมอ และดูแลสุขอนามัยการนอนหลับที่ดี เพื่อรักษาสมดุลจิตใจที่ผ่อนคลายนี้ต่อไป
+      <strong>✅ ความเครียดระดับน้อย (ปกติ)</strong><br>
+      ยินดีด้วย ความเครียดระดับนี้เป็นความเครียดในชีวิตประจำวันที่ทุกคนต้องเจออยู่แล้ว ซึ่งแต่ละคนสามารถปรับตัวได้เอง โดยไม่ก่อให้เกิดปัญหาสุขภาพ และที่สำคัญคุณยังสามารถช่วยดูแลคนอื่นๆ ได้อีกด้วย
     `;
   } else if (score <= 7) {
-    badge.className = 'result-badge medium';
-    adviceBox.style.borderLeftColor = 'var(--warning-color)';
+    badge.className = 'result-badge-new badge-medium';
+    scoreRing.style.borderColor = 'var(--warning)';
+    document.getElementById('scoreNumber').style.color = 'var(--warning)';
+    adviceBox.style.borderLeftColor = 'var(--warning)';
     adviceBox.innerHTML = `
-      <strong>คำแนะนำ: ความเครียดระดับปานกลาง</strong><br>
-      คุณอาจมีความกังวลหรือความตึงเครียดจากชีวิตประจำวัน การทำงาน หรือสิ่งแวดล้อมสะสมอยู่บ้าง แนะนำให้หาเวลาพักผ่อนระหว่างวัน ฝึกการหายใจลึกๆ ทำสมาธิ พูดคุยปรึกษากับเพื่อนฝูงหรือครอบครัวเพื่อระบาย และหากิจกรรมที่สร้างสรรค์เพื่อผ่อนคลายความตึงเครียด
+      <strong>🟡 ความเครียดระดับปานกลาง</strong><br>
+      ความเครียดระดับบนี้ เป็นความเครียดที่เกิดจากการต้องเตรียมพร้อมในการจัดการปัญหาต่างๆ จึงทำให้เกิดความเครียดเพิ่มขึ้นในระดับปานกลาง ซึ่งถือว่ายังปกติ เพราะความเครียดระดับนี้ทำให้เราเกิดความกระตือรือร้นในการเผชิญกับปัญหาที่เข้ามา
     `;
   } else if (score <= 9) {
-    badge.className = 'result-badge high';
-    adviceBox.style.borderLeftColor = 'var(--danger-color)';
+    badge.className = 'result-badge-new badge-high';
+    scoreRing.style.borderColor = 'var(--danger)';
+    document.getElementById('scoreNumber').style.color = 'var(--danger)';
+    adviceBox.style.borderLeftColor = 'var(--danger)';
     adviceBox.innerHTML = `
-      <strong>คำแนะนำ: ความเครียดระดับสูง</strong><br>
-      ร่างกายและจิตใจของคุณเริ่มมีภาวะตึงเครียดสะสมในระดับที่อาจส่งผลกระทบต่อกิจกรรมในชีวิตประจำวันหรือการนอนหลับได้ ควรปรับลดภาระงานลงชั่วคราว นอนหลับพักผ่อนให้เพียงพอ หลีกเลี่ยงเครื่องดื่มแอลกอฮอล์และคาเฟอีน หากลองปรับเปลี่ยนพฤติกรรมแล้วยังรู้สึกตึงเครียดหรือนอนไม่หลับเกิน 2 สัปดาห์ แนะนำให้ปรึกษานักจิตวิทยาหรือจิตแพทย์เพื่อรับคำแนะนำที่เหมาะสม
+      <strong>🔴 ความเครียดระดับสูง</strong><br>
+      ความเครียดระดับนี้อาจทำให้เกิดการตอบสนองเหตุการณ์รุนแรงขึ้นชั่วคราวได้ แต่ก็มักจะลดลงมาเป็นปกติเมื่อเหตุการณ์สิ้นสุดหรือจบลง เครียดแบบนี้เรามีวิธีจัดการอย่างง่ายๆ <br>
+      - หายใจเข้าลึกๆ หายใจออกยาวๆอย่างต่อเนื่องไปจนรู้สึกผ่อนคลาย<br>
+      - ควรนอนหลับพักผ่อนอย่างเพียงพอ<br>
+      - พูดคุยกันคนใกล้ชิด <br>
+      - ใช้หลักศาสนาทำให้คลายกังวล <br>
+      - ให้กำลังใจตัวเองว่าเราจะฝ่าฟันอุปสรรค์หรือปัญหาครั้งนี้ไปได้และมองด้านบวก <br>
+      - ภายใน 2 สัปดาห์ ถ้าคุณยังรู้สึกไม่ดีขึ้น แสดงว่าความเครียดยังไม่ลดลง คุณควรไปพบแพทย์เพื่อประเมินซ้ำ เพราะความเครียดที่มากและต่อเนื่องอาจจะนำไปสู่โรควิตกกังวล ภาวะซึมเศร้า และเสี่ยงต่อการฆ่าตัวตายได้
     `;
   } else {
-    badge.className = 'result-badge high'; // Shared class style
-    badge.style.backgroundColor = '#991b1b'; // Darker red for critical
-    adviceBox.style.borderLeftColor = '#991b1b';
+    badge.className = 'result-badge-new badge-critical';
+    scoreRing.style.borderColor = 'var(--critical)';
+    document.getElementById('scoreNumber').style.color = 'var(--critical)';
+    adviceBox.style.borderLeftColor = 'var(--critical)';
     adviceBox.innerHTML = `
-      <strong>คำแนะนำ: ความเครียดระดับสูงมาก (วิกฤต)</strong><br>
-      <span style="color: #991b1b; font-weight: bold;">สภาวะจิตใจกำลังรับแรงกดดันหรือความเครียดสูงมาก</span> อาจส่งผลต่อสุขภาพกาย เช่น ใจสั่น ปวดหัว นอนไม่หลับรุนแรง แนะนำให้ขอความช่วยเหลือจากบุคคลรอบข้างทันที และควรเข้ารับการคำปรึกษาจากสายด่วนสุขภาพจิตโทร 1323 (ฟรี 24 ชม.) หรือเดินทางเข้าพบนักจิตวิทยา/จิตแพทย์ที่โรงพยาบาลใกล้บ้านเพื่อการประเมินและช่วยเหลืออย่างมีประสิทธิภาพ
+      <strong>🆘 ความเครียดระดับสูงมาก (วิกฤต)</strong><br>
+      <span style="color: var(--critical); font-weight: bold;">สภาวะจิตใจกำลังรับแรงกดดันหรือความเครียดสูงมาก</span> ความเครียดระดับที่รุนแรง ซึ่งส่งผลต่อสุขภาพร่างกาย ร่างกายจะอ่อนแอ เจ็บปวดง่าย และมีผลต่อภาวะจิตใจจนอาจเกิดโรควิตกกังวล ภาวะซึมเศร้า และเสี่ยงต่อการฆ่าตัวตายได้ คุณควรเข้ารับการรักษาจากแพทย์ทันที เพื่อรับการดูแลต่อเนื่องอย่างใกล้ชิดไปอีก 3-6 เดือน
     `;
   }
 
@@ -64,21 +77,23 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('summaryPhone').innerText = phone;
   document.getElementById('summaryAddress').innerText = address;
 
-  // Set mental health screening summary values (2Q and 1Q)
+  // Set screening result pills (2Q and 1Q) with class-based styling
   const depEl = document.getElementById('summaryDepression');
-  depEl.innerText = depResult || '-';
   if (depResult && depResult.includes('เสี่ยง')) {
-    depEl.style.color = 'var(--danger-color)';
+    depEl.innerText = '⚠ ' + depResult;
+    depEl.className = 'screen-result risk';
   } else {
-    depEl.style.color = 'var(--success-color)';
+    depEl.innerText = '✓ ' + (depResult || 'ปกติ');
+    depEl.className = 'screen-result safe';
   }
 
   const suicideEl = document.getElementById('summarySuicide');
-  suicideEl.innerText = suicideResult || '-';
   if (suicideResult && suicideResult.includes('เสี่ยง')) {
-    suicideEl.style.color = 'var(--danger-color)';
+    suicideEl.innerText = '⚠ ' + suicideResult;
+    suicideEl.className = 'screen-result risk';
   } else {
-    suicideEl.style.color = 'var(--success-color)';
+    suicideEl.innerText = '✓ ' + (suicideResult || 'ปกติ');
+    suicideEl.className = 'screen-result safe';
   }
 
   // Restart handler
